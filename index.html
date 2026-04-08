@@ -1,1 +1,499 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Brisanet | Conectando o futuro no Ceará</title>
+    <!-- Bootstrap 5 + Icons + Google Fonts -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8faff;
+            color: #1a2b3e;
+            scroll-behavior: smooth;
+        }
+
+        /* Cores inovadoras: azul futurista + acento laranja/energia */
+        :root {
+            --primary-dark: #0B2B4A;
+            --primary-bright: #1E6FDF;
+            --accent-orange: #FF6B35;
+            --accent-glow: #00C9FF;
+            --light-gray: #F4F7FC;
+            --text-dark: #102a3c;
+        }
+
+        .navbar {
+            background: rgba(11, 43, 74, 0.95);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #FFFFFF, #A0D9FF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent !important;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: white !important;
+            margin: 0 8px;
+            transition: 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-orange) !important;
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0B2B4A 0%, #0f3b5e 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 100px 0 80px;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 20% 30%, rgba(30,111,223,0.2) 0%, rgba(0,201,255,0.05) 80%);
+            top: -50%;
+            left: -50%;
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-weight: 800;
+            font-size: 3rem;
+            background: linear-gradient(to right, #FFF, #7bc5ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-badge {
+            background: rgba(255,107,53,0.2);
+            backdrop-filter: blur(4px);
+            border-radius: 40px;
+            padding: 6px 16px;
+            font-size: 0.9rem;
+            color: #FFC9B5;
+            width: fit-content;
+        }
+
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s;
+            border: none;
+            border-radius: 28px;
+            background: white;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 35px -12px rgba(0,0,0,0.15);
+        }
+
+        .icon-circle {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(145deg, #eef4ff, #e0eaff);
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: var(--primary-bright);
+        }
+
+        .section-title {
+            font-weight: 700;
+            border-left: 5px solid var(--accent-orange);
+            padding-left: 18px;
+            margin-bottom: 2rem;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 32px;
+            padding: 1.5rem;
+            height: 100%;
+            transition: all 0.2s;
+            border: 1px solid rgba(0,0,0,0.03);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+        }
+
+        .footer {
+            background: #071e30;
+            color: #cddfe7;
+        }
+
+        .btn-brisa {
+            background: linear-gradient(95deg, #FF6B35, #FF8C5A);
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn-brisa:hover {
+            transform: scale(1.02);
+            background: linear-gradient(95deg, #f85c24, #ff7a48);
+            box-shadow: 0 10px 20px -5px rgba(255,107,53,0.4);
+        }
+
+        .btn-outline-light-custom {
+            border: 1px solid rgba(255,255,255,0.4);
+            border-radius: 40px;
+            padding: 10px 24px;
+            color: white;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .btn-outline-light-custom:hover {
+            background: var(--accent-orange);
+            border-color: var(--accent-orange);
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary-bright);
+        }
+
+        .bg-soft-wave {
+            background: linear-gradient(112deg, #FFFFFF 30%, #F4F9FF 90%);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero {
+                padding: 70px 0 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top py-3">
+        <div class="container">
+            <a class="navbar-brand" href="#">BRISANET</a>
+            <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#home">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#servicos">Serviços</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#localizacao">Localização</a></li>
+                </ul>
+                <a href="#contato" class="btn btn-brisa ms-lg-3 mt-3 mt-lg-0">Conectar Agora</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero" style="margin-top: 72px;">
+        <div class="container py-4">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-7 text-white">
+                    <div class="hero-badge mb-3">
+                        <i class="fas fa-tachometer-alt me-1"></i> +24 anos de inovação
+                    </div>
+                    <h1 class="display-4 fw-bold mb-3">Fibra Óptica que <br> conecta o futuro do Ceará</h1>
+                    <p class="lead mb-4 opacity-90">Internet de altíssima velocidade, estabilidade e suporte local. Na Brisanet, sua experiência é nossa prioridade.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#servicos" class="btn btn-brisa"><i class="fas fa-rocket me-2"></i>Nossos Planos</a>
+                        <a href="#contato" class="btn btn-outline-light-custom"><i class="fas fa-headset me-2"></i>Fale com especialista</a>
+                    </div>
+                    <div class="row mt-5 g-4">
+                        <div class="col-sm-4">
+                            <div class="d-flex align-items-center gap-2"><i class="fas fa-check-circle fa-2x" style="color:#FF6B35"></i> <span><strong>99.9%</strong> <br> estabilidade</span></div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="d-flex align-items-center gap-2"><i class="fas fa-globe fa-2x" style="color:#FF6B35"></i> <span><strong>1 Gbps</strong> <br> fibra pura</span></div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="d-flex align-items-center gap-2"><i class="fas fa-clock fa-2x" style="color:#FF6B35"></i> <span><strong>24/7</strong> <br> suporte local</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 text-center">
+                    <img src="https://placehold.co/600x500/0B2B4A/FFFFFF?text=Brisanet+Fibra&font=montserrat" alt="Ilustração de fibra óptica" class="img-fluid rounded-4 shadow-lg" style="max-width: 100%; background: radial-gradient(circle at 30% 20%, #1f6390, #041e30);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INFOS RÁPIDAS (CNPJ, IE, IDADE) -->
+    <div class="container mt-4">
+        <div class="row g-3 justify-content-center">
+            <div class="col-md-3 col-6">
+                <div class="info-card text-center py-3">
+                    <i class="fas fa-building fa-2x text-primary mb-2"></i>
+                    <h6 class="fw-bold">CNPJ</h6>
+                    <p class="small">04.601.397/0001-28</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="info-card text-center py-3">
+                    <i class="fas fa-id-card fa-2x text-primary mb-2"></i>
+                    <h6 class="fw-bold">Inscrição Estadual</h6>
+                    <p class="small">0917961-56 / PE</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="info-card text-center py-3">
+                    <i class="fas fa-calendar-alt fa-2x text-primary mb-2"></i>
+                    <h6 class="fw-bold">Fundação</h6>
+                    <p class="small">01/08/2001 · 24 anos, 8 meses</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="info-card text-center py-3">
+                    <i class="fas fa-map-marker-alt fa-2x text-primary mb-2"></i>
+                    <h6 class="fw-bold">Sede</h6>
+                    <p class="small">Pereiro, Ceará</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SOBRE + DIFERENCIAIS -->
+    <section id="sobre" class="py-5 bg-soft-wave">
+        <div class="container py-4">
+            <div class="row align-items-center">
+                <div class="col-lg-6 order-lg-2">
+                    <div class="position-relative">
+                        <img src="https://placehold.co/600x450/112D44/FFFFFF?text=Infraestrutura+de+Fibra&font=montserrat" alt="Infraestrutura Brisanet" class="img-fluid rounded-4 shadow">
+                        <div class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-accent" style="background: var(--accent-orange);">Tecnologia 5G+Fibra</div>
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-1 mt-4 mt-lg-0">
+                    <span class="badge bg-primary bg-opacity-10 text-primary mb-2 py-2 px-3"><i class="fas fa-waveform"></i> 24 anos transformando o Nordeste</span>
+                    <h2 class="section-title fs-1">Conectamos pessoas, empresas e o amanhã.</h2>
+                    <p class="mt-3 fs-6 text-secondary">A <strong>Brisanet Serviços de Telecomunicações S.A.</strong> nasceu em Pereiro/CE em 2001 e desde então é referência em conectividade. Atuamos com SCM (Serviços de Comunicação Multimídia) levando internet de alta performance para residências e negócios. Combinamos infraestrutura própria, atendimento humano e inovação contínua.</p>
+                    <div class="row mt-4">
+                        <div class="col-6">
+                            <div class="d-flex gap-2"><i class="fas fa-database fa-lg text-primary mt-1"></i><div><strong>Fibra 100% simétrica</strong><br><small class="text-secondary">Upload e download na velocidade máxima</small></div></div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex gap-2"><i class="fas fa-shield-alt fa-lg text-primary mt-1"></i><div><strong>Segurança digital</strong><br><small class="text-secondary">Proteção avançada para sua rede</small></div></div>
+                        </div>
+                        <div class="col-6 mt-3">
+                            <div class="d-flex gap-2"><i class="fas fa-tower-cell fa-lg text-primary mt-1"></i><div><strong>Atendimento local</strong><br><small class="text-secondary">Equipe cearense treinada</small></div></div>
+                        </div>
+                        <div class="col-6 mt-3">
+                            <div class="d-flex gap-2"><i class="fas fa-chart-line fa-lg text-primary mt-1"></i><div><strong>Expansão contínua</strong><br><small class="text-secondary">+100 cidades cobertas</small></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVIÇOS / PLANOS INOVADORES -->
+    <section id="servicos" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title d-inline-block">Planos que aceleram sua rotina</h2>
+                <p class="text-secondary mt-2">Tecnologia de ponta com os melhores benefícios para você</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card-hover card p-4 h-100 text-center rounded-4">
+                        <div class="icon-circle mx-auto mb-3"><i class="fas fa-home"></i></div>
+                        <h4 class="fw-bold">Brisa Família</h4>
+                        <h2 class="text-primary fw-bold">R$ 99,90<span class="fs-6">/mês</span></h2>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="fas fa-check-circle text-success me-2"></i> 500 Mega Fibra</li>
+                            <li><i class="fas fa-check-circle text-success me-2"></i> Wi-Fi 6 incluso</li>
+                            <li><i class="fas fa-check-circle text-success me-2"></i> Suporte 24h</li>
+                        </ul>
+                        <a href="#contato" class="btn btn-outline-primary rounded-pill mt-3">Assine já</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card-hover card p-4 h-100 text-center rounded-4 border border-warning shadow">
+                        <div class="icon-circle mx-auto mb-3" style="background: linear-gradient(145deg, #fff0e0, #ffe6d5);"><i class="fas fa-rocket"></i></div>
+                        <span class="badge bg-warning text-dark mb-2">MAIS VENDIDO</span>
+                        <h4 class="fw-bold">Brisa Hyper</h4>
+                        <h2 class="text-primary fw-bold">R$ 139,90<span class="fs-6">/mês</span></h2>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="fas fa-check-circle text-success me-2"></i> 1 Giga Fibra</li>
+                            <li><i class="fas fa-check-circle text-success me-2"></i> Roteador Mesh</li>
+                            <li><i class="fas fa-check-circle text-success me-2"></i> Segurança Plus</li>
+                        </ul>
+                        <a href="#contato" class="btn btn-brisa rounded-pill mt-3">Assine já</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card-hover card p-4 h-100 text-center rounded-4">
+                        <div class="icon-circle mx-auto mb-3"><i class="fas fa-briefcase"></i></div>
+                        <h4 class="fw-bold">Brisa Empresas</h4>
+                        <h2 class="text-primary fw-bold">Sob consulta</h2>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="fas fa-check-circle text-success me-2"></i> Link dedicado</li>
+                            <li><i class="fas fa-check-circle text-success me-2"></i> SLA avançado</li>
+                            <li><i class="fas fa-check-circle text-success me-2"></i> IP Fixo opcional</li>
+                        </ul>
+                        <a href="#contato" class="btn btn-outline-primary rounded-pill mt-3">Fale com consultor</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO DE ESTATÍSTICAS INOVADORAS -->
+    <div class="container my-4">
+        <div class="row bg-white rounded-5 p-4 shadow-sm align-items-center">
+            <div class="col-md-3 text-center border-end-md">
+                <div class="stat-number">24+</div>
+                <div>Anos de experiência</div>
+            </div>
+            <div class="col-md-3 text-center border-end-md">
+                <div class="stat-number">350k+</div>
+                <div>Clientes satisfeitos</div>
+            </div>
+            <div class="col-md-3 text-center border-end-md">
+                <div class="stat-number">100%</div>
+                <div>Cobertura em Fibra Óptica</div>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="stat-number">NPS 82</div>
+                <div>Excelência em atendimento</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTATO + INFRA E LOCALIZAÇÃO -->
+    <section id="contato" class="py-5" style="background: #eef2fa;">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-5">
+                    <h2 class="section-title">Fale com a Brisanet</h2>
+                    <p class="mb-4">Nossa equipe está pronta para tirar dúvidas, contratar planos e oferecer suporte técnico. Atendimento humanizado e rápido.</p>
+                    <div class="mb-4">
+                        <div class="d-flex gap-3 mb-3"><i class="fas fa-envelope fa-2x text-primary"></i> <div><strong>E-mail fiscal</strong><br> fiscal@grupobrisanet.com.br</div></div>
+                        <div class="d-flex gap-3 mb-3"><i class="fas fa-phone-alt fa-2x text-primary"></i> <div><strong>Telefones</strong><br> (84) 3353-3017 · (85) 3878-4151</div></div>
+                        <div class="d-flex gap-3"><i class="fas fa-clock fa-2x text-primary"></i> <div><strong>Atendimento comercial</strong><br> Segunda a Sexta: 8h às 20h · Sábado 9h às 14h</div></div>
+                    </div>
+                    <a href="mailto:fiscal@grupobrisanet.com.br" class="btn btn-brisa w-100 w-md-auto"><i class="fas fa-paper-plane me-2"></i>Enviar e-mail agora</a>
+                </div>
+                <div class="col-lg-7">
+                    <div class="info-card p-4">
+                        <h5><i class="fas fa-map-pin me-2 text-danger"></i>Endereço Matriz / Correspondência</h5>
+                        <p class="mt-2"><strong>Logradouro:</strong> Rodovia Ce-138, S/N - Trecho Pereiro - Ce Divisa Com Rn - Km14 Estrada de Acesso Brisa 1Km - Portao A Predio 2 - Entrada 3 Terreo<br>
+                        <strong>Bairro:</strong> Pereiro | <strong>CEP:</strong> 63460-000<br>
+                        <strong>Município:</strong> Pereiro - Estado: Ceará</p>
+                        <hr>
+                        <div class="row small">
+                            <div class="col-6"><i class="fas fa-check-circle text-success"></i> Inscrição Estadual PE: 0917961-56</div>
+                            <div class="col-6"><i class="fas fa-chart-simple"></i> Atividade principal: SCM - 61.10-8-03</div>
+                            <div class="col-12 mt-2"><span class="badge bg-success">Situação Cadastral: ATIVA</span> · Receita Federal</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAPA/LOCALIZAÇÃO -->
+    <section id="localizacao" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-4">
+                    <h2 class="section-title d-inline-block">Nossa base no coração do Ceará</h2>
+                    <p class="text-secondary">Pereiro / CE - Rodovia CE-138, KM14 - Tecnologia e inovação saindo do semiárido para o Brasil.</p>
+                </div>
+                <div class="col-md-6 mx-auto">
+                    <div class="ratio ratio-16x9 rounded-4 overflow-hidden shadow">
+                        <!-- Mapa ilustrativo estático com localização central (Pereiro) - não requer API key, apenas representação com OpenStreetMap -->
+                        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-38.5234,-6.4575,-38.4700,-6.4150&layer=mapnik&marker=-6.4365,-38.4967" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                    <div class="mt-3 text-center small text-secondary">Rodovia CE-138, S/N - Pereiro/CE | Complexo Brisanet</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER COMPLETO -->
+    <footer class="footer pt-5 pb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h4 class="text-white mb-3">Brisanet</h4>
+                    <p>Conectando o Nordeste com fibra óptica de qualidade. Inovação, transparência e compromisso desde 2001.</p>
+                    <div class="d-flex gap-3 fs-5">
+                        <a href="#" class="text-white-50"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white-50"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white-50"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="text-white-50"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-white">Dados legais</h5>
+                    <ul class="list-unstyled small">
+                        <li>CNPJ: 04.601.397/0001-28</li>
+                        <li>Razão Social: Brisanet Serviços de Telecomunicações S.A.</li>
+                        <li>IE/PE: 0917961-56</li>
+                        <li>Data Abertura: 01/08/2001</li>
+                        <li>SCM: 61.10-8-03 | Ativa ✅</li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-white">Contato rápido</h5>
+                    <p><i class="fas fa-phone-alt me-2"></i> (84) 3353-3017 / (85) 3878-4151</p>
+                    <p><i class="fas fa-envelope me-2"></i> fiscal@grupobrisanet.com.br</p>
+                    <p><i class="fas fa-location-dot me-2"></i> Rodovia CE-138, S/N - Pereiro/CE - CEP: 63460-000</p>
+                </div>
+            </div>
+            <hr class="opacity-25">
+            <div class="text-center pt-2 small">
+                &copy; 2026 Brisanet Serviços de Telecomunicações S.A. | Todos os direitos reservados | Tecnologia fibra óptica de alta performance.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- smooth scroll simples para links internos -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === "#" || href === "") return;
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
